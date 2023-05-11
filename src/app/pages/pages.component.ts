@@ -92,7 +92,17 @@ export class PagesComponent implements OnInit {
   }
 
   updateMenu(values: any) {
-    this.menu = getMenu(values);
+    let menu_object = {
+      dashboard : {
+        title: "Dashboard",
+        analysis: "Phân tích"
+      },
+      management : {
+        title: "Quản lý",
+        qlmh : "Quản lý môn học",
+      }
+    };
+    this.menu = getMenu(menu_object);
   }
 
   openSideMenuDrawer() {
