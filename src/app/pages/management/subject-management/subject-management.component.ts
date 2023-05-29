@@ -6,6 +6,7 @@ import { DialogService } from 'ng-devui/modal';
 import { ToastService } from 'ng-devui/toast';
 
 import { ApiService } from 'src/app/api.service';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-subject-management',
@@ -15,6 +16,7 @@ import { ApiService } from 'src/app/api.service';
 export class SubjectManagementComponent {
   @ViewChild(DataTableComponent, { static: true }) datatable: DataTableComponent;
   @ViewChild('EditorTemplate', { static: true }) EditorTemplate: TemplateRef<any>;
+  @ViewChild('ImportTemplate', { static: true }) ImportTemplate: TemplateRef<any>;
   basicDataSource = [];
 
   insert = true;
@@ -56,6 +58,8 @@ export class SubjectManagementComponent {
   };
 
   editForm: any = null;
+  importForm: any = null;
+  file: any[] = [];
 
   constructor(private api: ApiService, private dialogService: DialogService, private toastService: ToastService) {}
 
@@ -79,6 +83,69 @@ export class SubjectManagementComponent {
       this.basicDataSource = a.data;
       this.pager.total = a.totalItems;
     });
+  }
+
+  public exportToExcel() {
+    const data = {
+      page: this.pager.pageIndex,
+      pageSize: this.pager.pageSize,
+      ...this._search,
+    };
+
+    this.busy = this.api.postForExport('api/MonHoc/export-to-excel', data).subscribe((res: any) => {
+      saveAs(res, "item_group_ref.xlsx");
+    });
+
+  }
+
+  openImportModal() {
+    this.importForm = this.dialogService.open({
+      id: 'import-dialog',
+      width: '400px',
+      title: 'Import Excel',
+      showAnimate: false,
+      contentTemplate: this.ImportTemplate,
+      backdropCloseable: true,
+      onClose: () => {},
+      buttons: [],
+    });
+  }
+
+  closeImportModal() {
+    this.importForm!.modalInstance.hide();
+    this.file = [];
+  }
+
+  onSelectFiles(event: any) {
+    this.file = event.addedFiles;
+    console.log(this.file)
+    console.log(this.file[0].name)
+  }
+
+  importExcel({ valid, directive, data, errors }: any) {
+    console.log('Valid:', valid, 'Directive:', directive, 'data', data, 'errors', errors);
+    if (!this.file[0]) {
+      return false;
+    }
+    if (this.isSubmitting) {
+      return false;
+    }
+
+    this.isSubmitting = true;
+
+    this.api.importFile(this.file[0], 'api/MonHoc/upload').subscribe((res: any) => {
+      if (res.body) {
+        this.toastService.open({
+          value: [{ severity: 'success', summary: 'Thành công', content: `Import excel thành công!` }],
+        });
+
+        this.isSubmitting = false;
+        this.getList();
+        this.file = [];
+      }
+    });
+
+    return true;
   }
 
   addRow() {
@@ -149,7 +216,6 @@ export class SubjectManagementComponent {
     } else {
 
       this.api.post('api/MonHoc/update', this.subject).subscribe((res: any) => {
-        this.subject = {};
         this.toastService.open({
           value: [{ severity: 'success', summary: 'Thành công', content: `Cập nhập môn học thành công!` }],
         });

@@ -40,6 +40,8 @@
             </div>
             <div class="header-right">
               <d-button (click)="addRow()" style="margin-right: 8px">Thêm môn học</d-button>
+              <d-button (click)="openImportModal()" style="margin-right: 8px">Import Excel</d-button>
+              <d-button (click)="exportToExcel()" style="margin-right: 8px">Export Excel</d-button>
               <d-button (click)="reset()" bsStyle="common" style="margin-right: 8px">Reset</d-button>
               <d-button (click)="batchDelete(deleteList)" bsStyle="danger" [disabled]="!deleteList.length">Xóa hàng loạt</d-button>
             </div>
@@ -177,6 +179,21 @@
     <d-form-operation class="da-form-operation" style="text-align: right">
       <d-button style="margin-right: 8px" dFormSubmit [dFormSubmitData]="'submit-button'" [showLoading]="isSubmitting">Ok</d-button>
       <d-button bsStyle="common" (click)="onCanceled()">Hủy</d-button>
+    </d-form-operation>
+  </form>
+</ng-template>
+
+<ng-template #ImportTemplate>
+  <form dForm #eForm2 dLoading [loading]="doneSetup" (dSubmit)="importExcel($event)" [dValidateRules]="{ message: 'The form verification failed, please check.' }">
+    <d-form-item>
+      <d-form-label [required]="true" style="min-width: 80%;">{{ file[0]?.name }}</d-form-label>
+      <ngx-dropzone (change)="onSelectFiles($event)" style="border: none; overflow: hidden; width: 100px; height: 28px;">
+        <ngx-dropzone-label ><d-button>Bổ sung</d-button></ngx-dropzone-label>
+      </ngx-dropzone>
+    </d-form-item>
+    <d-form-operation class="da-form-operation" style="text-align: right">
+      <d-button style="margin-right: 8px" dFormSubmit [dFormSubmitData]="'submit-button'" [showLoading]="isSubmitting">Ok</d-button>
+      <d-button bsStyle="common" (click)="closeImportModal()">Hủy</d-button>
     </d-form-operation>
   </form>
 </ng-template>

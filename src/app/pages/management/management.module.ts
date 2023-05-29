@@ -6,6 +6,8 @@ import { DialogService, BackTopModule } from 'ng-devui';
 import { SharedModule } from '../../@shared/shared.module';
 import { DaLayoutModule } from '../../@shared/layouts/da-layout';
 
+import { NgxDropzoneModule } from 'ngx-dropzone';
+
 import { ManagementRoutingModule } from './management-routing.module';
 import { SubjectManagementComponent } from './subject-management/subject-management.component';
 
@@ -22,6 +24,7 @@ import { SubjectManagementComponent } from './subject-management/subject-managem
     InputNumberModule,
     ToastModule,
     FormsModule,
+    NgxDropzoneModule,
     ManagementRoutingModule
   ],
   declarations: [
