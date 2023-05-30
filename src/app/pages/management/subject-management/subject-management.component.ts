@@ -93,7 +93,7 @@ export class SubjectManagementComponent {
     };
 
     this.busy = this.api.postForExport('api/MonHoc/export-to-excel', data).subscribe((res: any) => {
-      saveAs(res, "item_group_ref.xlsx");
+      saveAs(res, "mon_hoc.xlsx");
     });
 
   }
