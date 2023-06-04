@@ -17,6 +17,34 @@ export default function (values: any) {
         {
           title: values['management']['qlmh'],
           link: '/pages/management/qlmh',
+        },
+        {
+          title: values['management']['qlhs'],
+          link: '/pages/management/qlhs',
+        },
+        {
+          title: values['management']['qlgv'],
+          link: '/pages/management/qlgv',
+        },
+        {
+          title: values['management']['qllh'],
+          link: '/pages/management/qllh',
+        },
+        {
+          title: values['management']['qlkh'],
+          link: '/pages/management/qlkh',
+        },
+        {
+          title: values['management']['qlld'],
+          link: '/pages/management/qlld',
+        },
+        {
+          title: values['management']['qldiem'],
+          link: '/pages/management/qldiem',
+        },
+        {
+          title: values['management']['qlnd'],
+          link: '/pages/management/qlnd',
         }
       ],
       link: '/pages/management',

@@ -100,7 +100,16 @@ export class PagesComponent implements OnInit {
       management : {
         title: "Quản lý",
         qlmh : "Quản lý môn học",
+        qlhs : "Quản lý học sinh",
+        qllh : "Quản lý lớp học",
+        qlkh : "Quản lý khối học",
+        qlgv : "Quản lý giáo viên",
+        qlld : "Quản lý loại điểm",
+        qldiem : "Quản lý điểm",
+        qlnd : "Quản lý người dùng"
       }
+      
+
     };
     this.menu = getMenu(menu_object);
   }
