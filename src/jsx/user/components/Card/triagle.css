@@ -1,0 +1,7 @@
+.arrow-up {
+    width: 100%; 
+    height: 100%; 
+    border-left: 215px solid transparent;
+    border-right: 215px solid transparent;
+    border-bottom: 200px solid rgb(255, 255, 255);
+  }

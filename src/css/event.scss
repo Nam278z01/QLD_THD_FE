@@ -1,0 +1,108 @@
+.event-card-group{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.event-card{
+    max-width: 350px;
+    margin-top: 30px;
+    overflow: hidden;
+    .event-card-row1{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        img{
+            max-width: 30px;
+        }
+    }
+}
+.event-card .card-img-top{
+    cursor: pointer;
+    transition: 0.5s all ease-in-out;
+    max-height: 200px;
+    overflow: hidden;
+    border-bottom: 0px;
+}
+
+.event-card .card-img-top:hover{
+    transform: scale(1.1);
+    /* filter: blur(1px);
+    -webkit-filter: blur(1px); */
+}
+.event-card{
+    .event-card-title{
+        font-weight: 600;
+        font-size: larger;
+    }
+    .event-card-info{
+        img{
+            max-width: 30px;
+        }
+    }
+    .card-footer{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .event-card-row2{
+        img{
+            max-width: 30px;
+        }
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 10px;
+        // margin-bottom: 10px;
+        div{
+            display: flex;
+            align-items: center;
+        }
+    }
+    .event-card-time{
+        // display: flex;
+        // justify-content: space-around;
+        align-items: center;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        img{
+            max-width: 20px;
+        }
+    }
+    .active-status{
+        color: rgb(25, 213, 12);
+    }
+    .expried-status{
+        color: rgb(142, 12, 12);
+    }
+    .event-card-status{
+        
+        // float: right;
+        // margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        // margin-top: 10px;
+        text-align: right;
+        // color: rgb(25, 213, 12);
+        font-weight: 600;
+        .dot{
+        display: block;
+        float: left;
+        width: 12px;
+        height: 12px;
+        margin-right: 10px;
+        border-radius: 100%;
+        }
+        .active-dot{
+            background: rgb(25, 213, 12);
+        box-shadow: inset 0px 0px 10px 2px rgba(25, 213, 12,0.5),
+                    0px 0px 10px 2px rgb(89, 220, 80);
+        }
+        .expried-dot{
+            background: rgb(142, 12, 12);
+        box-shadow: inset 0px 0px 10px 2px rgba(133, 7, 7, 0.5),
+                    0px 0px 10px 2px rgb(144, 66, 66);
+        }
+        
+    }
+}

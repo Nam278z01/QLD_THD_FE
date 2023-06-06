@@ -1,0 +1,104 @@
+.gradient-border-red {
+    background-color: #f9c1b1;
+    background-image: linear-gradient(315deg, #f7bbaa 0%, #ff6f76 74%);
+  }
+  .gradient-border-red h5, .gradient-border-red h6, .gradient-border-red h4{
+    color: #640404;
+    
+  }
+  /* .gradient-border-red h2{
+    text-shadow: 2px 0 #ff0000, -2px 0 #ff0000, 0 2px #ff0000, 0 -2px #ff0000,
+    1px 1px #ff0000, -1px -1px #ff0000, 1px -1px #ff0000, -1px 1px #ff0000;
+  } */
+  .gradient-border-red:after {
+    background: linear-gradient(
+      60deg,
+      #fdfa1e,
+      #f37055,
+      #ef4e7b,
+      #ffa8a8,
+      #ff0000
+    );
+  }
+  
+  .gradient-border-yellow {
+      background-color: #f9ea8f;
+      background-image: linear-gradient(315deg, #faf1b8 0%, #c5f2f8 74%);
+  }
+  .gradient-border-yellow h5, .gradient-border-yellow h6, .gradient-border-yellow h4{
+    color: rgb(105, 107, 5);
+  }
+  /* .gradient-border-yellow h2{
+    text-shadow: 2px 0 #ffff00, -2px 0 #ffff00, 0 2px #ffff00, 0 -2px #ffff00,
+    1px 1px #ffff00, -1px -1px #ffff00, 1px -1px #ffff00, -1px 1px #ffff00;
+  } */
+  .gradient-border-yellow:after {
+    background: linear-gradient(
+      60deg,
+      #c5db4a,
+      #d6f355,
+      #aaad10,
+      #a0a747,
+      #ffff00
+    );
+  }
+  .gradient-border-silver {
+      background-color: #ffcfdf;
+      background-image: linear-gradient(315deg, #ddfdf4 0%, #d8e3fc 74%);
+  }
+  .gradient-border-silver h5, .gradient-border-silver h6
+  , .gradient-border-silver h4{
+    color: #055b66;
+  }
+  /* .gradient-border-silver h2{
+    text-shadow: 2px 0 #98baff, -2px 0 #98baff, 0 2px #98baff, 0 -2px #98baff,
+    1px 1px #98baff, -1px -1px #98baff, 1px -1px #98baff, -1px 1px #98baff;
+  } */
+  .gradient-border-silver:after {
+    background: linear-gradient(
+      60deg,
+      #a166ab,
+      #98baff,
+      #77edff,
+      #07b39b,
+      #6fba82
+    );
+  }
+  
+  .gradient-border {
+    --borderWidth: 2px;
+    position: relative;
+    border-radius: var(--borderWidth);
+  }
+  .gradient-border:after {
+    content: "";
+    position: absolute;
+    top: calc(-1 * var(--borderWidth));
+    left: calc(-1 * var(--borderWidth));
+    height: calc(100% + var(--borderWidth) * 2);
+    width: calc(100% + var(--borderWidth) * 2);
+    border-radius: calc(2 * var(--borderWidth));
+    z-index: -1;
+    animation: animatedgradient 3s ease alternate infinite;
+    background-size: 300% 300%;
+  }
+  
+  @keyframes animatedgradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .hex {
+    background-color: #424242;
+    -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  }
+  
+
