@@ -9,6 +9,7 @@ import './index.css';
 import bgMainContent from '../../assets/images/bg_main.svg';
 import HomePage from './HomePage';
 import Member from './Member';
+import TeacherManage from './TeacherManage';
 
 const { Content, Footer } = Layout;
 const footerStyle = {
@@ -42,6 +43,7 @@ const UserIndex = () => {
                     <Route exact path={'/'} component={HomePage} />
                     <Route exact path={'/home'} component={HomePage} />
                     <Route exact path={'/member'} component={Member} />
+                    <Route exact path={'/teacher'} component={TeacherManage} />
                         {/* {routes.map((data, i) => (
                             <Route key={i} exact path={data.path} component={data.component} />
                         ))} */}

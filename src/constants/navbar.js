@@ -24,11 +24,11 @@ const itemProfiles = [
 const itemSettings = [
     {
         key: '1',
-        label: 'Rule & Medal',
+        label: 'Môn học',
         children: [
             {
                 key: '1-1',
-                label: 'Rule List',
+                label: 'Toán',
                 path: '/rule'
             },
             {
@@ -37,63 +37,94 @@ const itemSettings = [
             },
             {
                 key: '1-2',
-                label: 'Medal List',
-                path: '/medal'
-            }
+                label: 'Văn',
+                path: '/rule'
+            },
+            {
+                type: 'divider',
+                keyLevel: '1-3'
+            },
+            {
+                key: '1-3',
+                label: 'Anh',
+                path: '/rule'
+            },
+            {
+                type: 'divider',
+                keyLevel: '1-4'
+            },
+            {
+                key: '1-4',
+                label: 'Ngoại ngữ',
+                path: '/rule'
+            },
+            {
+                type: 'divider',
+                keyLevel: '1-5'
+            },
+            {
+                key: '1-5',
+                label: 'Địa',
+                path: '/rule'
+            },
+            {
+                type: 'divider',
+                keyLevel: '1-6'
+            },
         ]
     },
-    {
-        type: 'divider',
-        keyLevel: '2'
-    },
-    {
-        key: '2',
-        label: 'List',
-        children: [
-            {
-                key: '2-1',
-                label: 'Project List',
-                path: '/project',
-            },
-            {
-                type: 'divider',
-                keyLevel: '2-2'
-            },
-            {
-                key: '2-2',
-                label: 'Member List',
-                path: '/member'
-            },
-            {
-                type: 'divider',
-                keyLevel: '2-3'
-            }
+    // {
+    //     type: 'divider',
+    //     keyLevel: '2'
+    // },
+    // {
+    //     key: '2',
+    //     label: 'List',
+    //     children: [
+    //         {
+    //             key: '2-1',
+    //             label: 'Project List',
+    //             path: '/project',
+    //         },
+    //         {
+    //             type: 'divider',
+    //             keyLevel: '2-2'
+    //         },
+    //         {
+    //             key: '2-2',
+    //             label: 'Member List',
+    //             path: '/member'
+    //         },
+    //         {
+    //             type: 'divider',
+    //             keyLevel: '2-3'
+    //         }
             // {
             //     key: '2-3',
             //     label: 'Working Time',
             //     path: '/working-time',
             //     role: [userRole.HEAD, userRole.PM]
             // }
-        ]
-    },
-    {
-        type: 'divider',
-        keyLevel: '3'
-    },
-    {
-        key: '3',
-        label: 'Sync',
-        path: '/sync'
-    },
-    {
-        type: 'divider',
-        keyLevel: '4'
-    },
-    {
-        key: '4',
-        label: 'Setting',
-        path: '/setting'
-    }
+    //     ]
+    // },
+    // {
+    //     type: 'divider',
+    //     keyLevel: '3'
+    // },
+    // {
+    //     key: '3',
+    //     label: 'Sync',
+    //     path: '/sync'
+    // },
+    // {
+    //     type: 'divider',
+    //     keyLevel: '4'
+    // },
+    // {
+    //     key: '4',
+    //     label: 'Setting',
+    //     path: '/setting'
+    // }
 ];
 
 const roles = [

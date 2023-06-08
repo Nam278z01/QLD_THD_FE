@@ -283,11 +283,11 @@ function NavBar() {
             <Space style={{ marginLeft: 'auto' }}>
                 <Space style={{ margin: '0 0.5rem', display: 'flex' }}>
                     <Space style={{ display: 'flex', marginLeft: '2rem' }}>
+
                         <div style={{ display: 'flex', gap: '1rem' }}>
                             <Button
                                 className="btn-navbar"
                                 shape="round"
-                                icon={<ShopIcon />}
                                 onClick={() => redirectToPage('/home')}
                             >
                                 Home
@@ -295,20 +295,38 @@ function NavBar() {
                             <Button
                                 className="btn-navbar"
                                 shape="round"
-                                icon={<WalletIcon />}
                                 onClick={() => redirectToPage('/member')}
                             >
                                 Member
                             </Button>
-                            {isHead && (
-                                <Button
-                                    className="btn-navbar"
-                                    shape="round"
-                                    onClick={() => redirectToPage('/dashboard')}
-                                >
-                                    Dashboard
-                                </Button>
-                            )}
+                            <Button
+                                className="btn-navbar"
+                                shape="round"
+                                onClick={() => redirectToPage('/member')}
+                            >
+                                Quản lý lớp học
+                            </Button>
+                            <Button
+                                className="btn-navbar"
+                                shape="round"
+                                onClick={() => redirectToPage('/member')}
+                            >
+                                Quản lý môn học
+                            </Button>
+                            <Button
+                                className="btn-navbar"
+                                shape="round"
+                                onClick={() => redirectToPage('/member')}
+                            >
+                                Quản lý học sinh
+                            </Button>
+                            <Button
+                                className="btn-navbar"
+                                shape="round"
+                                onClick={() => redirectToPage('/teacher')}
+                            >
+                                Quản lý giáo viên
+                            </Button>
                         </div>
                     </Space>
                     <Space style={{ display: 'flex', marginLeft: '1rem' }}>
