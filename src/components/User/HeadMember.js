@@ -146,7 +146,7 @@ function HeadMember() {
     const { DepartmentID, Code } = useSelector((state) => state.DepartmentSettingSlice);
     const { getTokenFormData, getTokenDownload } = useContext(GetTokenV2Context);
 
-    const handleDeactiveRule = () => {};
+    const handleDeactiveRule = () => { };
     const showDeactiveConfirm = () => {
         confirm({
             title: 'Are you sure deactive this item?',
@@ -197,7 +197,7 @@ function HeadMember() {
     // setting colums of table
     const columns = [
         {
-            title: 'No.',
+            title: 'STT',
             dataIndex: 'No',
             key: 'No',
             width: 50,
@@ -205,20 +205,20 @@ function HeadMember() {
             render: (id, record, index) => TABLE.COLUMN.RENDER_INDEX(id, record, index, page, pageSize)
         },
         {
-            title: 'Department',
+            title: 'Tên học sinh',
             dataIndex: '',
             key: 'Department',
             align: 'center',
             render: () => <>{Code}</>
         },
         {
-            title: 'Name',
+            title: 'Điểm miệng (hệ số 1)',
             dataIndex: 'DisplayName',
             key: 'DisplayName',
             width: '25%'
         },
         {
-            title: 'Account',
+            title: 'Điểm 15p(hệ 1)',
             dataIndex: 'Account',
             key: 'Account',
             align: 'center',
@@ -226,12 +226,12 @@ function HeadMember() {
             sortDirections: ['ascend', 'descend']
         },
         {
-            title: 'Job Title',
+            title: 'Điểm 45p(hệ 2)',
             dataIndex: 'JobTitle',
             key: 'JobTitle'
         },
         {
-            title: 'Role',
+            title: 'Thi HK(hệ 3)',
             dataIndex: 'RoleID',
             key: 'Role',
             align: 'center',
@@ -240,55 +240,29 @@ function HeadMember() {
             render: RoleConvert
         },
         {
-            title: 'Phone Number',
+            title: 'Điểm TB',
             dataIndex: 'PhoneNumber',
             key: 'PhoneNumber',
             align: 'center',
             sorter: true,
             sortDirections: ['ascend', 'descend']
-        },
-        {
-            title: 'Birth Day',
-            dataIndex: 'DOB',
-            key: 'Birthday',
-            align: 'center',
-            sorter: true,
-            sortDirections: ['ascend', 'descend']
-        },
-        {
-            title: 'Contract Type',
-            dataIndex: 'ContractType',
-            key: 'ContractType',
-            align: 'center',
-            filterMultiple: false,
-            filters: contractTypeValues,
-            render: (ContractType) => <>{ContractType === 1 ? 'NVCT' : ContractType === 2 ? 'SVTT' : ''}</>
-        },
-        {
-            title: 'Status',
-            dataIndex: 'Status',
-            key: 'Status',
-            align: 'center',
-            render: statusColumRender,
-            filters: statusFilterValues,
-            filterMultiple: false
         }
     ];
 
     // get data from api [getAllMember]
-    const [memberData, setRefreshMemberData] = useRefreshToken(
-        getAllMemberDepartment,
-        page,
-        pageSize,
-        sortQuery,
-        search,
-        role,
-        status,
-        contract
-    );
-    useEffect(() => {
-        setData(memberData);
-    }, [memberData]);
+    // const [memberData, setRefreshMemberData] = useRefreshToken(
+    //     getAllMemberDepartment,
+    //     page,
+    //     pageSize,
+    //     sortQuery,
+    //     search,
+    //     role,
+    //     status,
+    //     contract
+    // );
+    // useEffect(() => {
+    //     setData(memberData);
+    // }, [memberData]);
 
     const handelAfterChangeSearch = (value) => {
         setPage(PAGE_INDEX);
@@ -370,7 +344,7 @@ function HeadMember() {
             <Row>
                 <Col xs={24} md={12} style={{ marginBottom: '1rem' }}>
                     <Title style={{ lineHeight: 1.1, margin: 0 }} level={3}>
-                        Member List
+                        Student list
                     </Title>
                 </Col>
                 <Col

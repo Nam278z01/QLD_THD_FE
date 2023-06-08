@@ -54,7 +54,6 @@ const itemSettings = [
                 key: '2-1',
                 label: 'Project List',
                 path: '/project',
-                role: [userRole.HEAD, userRole.PM]
             },
             {
                 type: 'divider',
@@ -63,8 +62,7 @@ const itemSettings = [
             {
                 key: '2-2',
                 label: 'Member List',
-                path: '/member',
-                role: [userRole.HEAD, userRole.PM]
+                path: '/member'
             },
             {
                 type: 'divider',
@@ -85,8 +83,7 @@ const itemSettings = [
     {
         key: '3',
         label: 'Sync',
-        path: '/sync',
-        role: [userRole.HEAD]
+        path: '/sync'
     },
     {
         type: 'divider',
@@ -95,8 +92,7 @@ const itemSettings = [
     {
         key: '4',
         label: 'Setting',
-        path: '/setting',
-        role: [userRole.DEFAULT_HEAD]
+        path: '/setting'
     }
 ];
 

@@ -33,7 +33,7 @@ const App = () => {
             <BrowserRouter>
               <Switch>
                 <Route exact path="/" component={Login} />
-                <Route exact path="/home" component={HomePage} />
+                {/* <Route exact path="/home" component={HomePage} /> */}
                 <Route
                   exact
                   path="/page-error-404-no-setting"

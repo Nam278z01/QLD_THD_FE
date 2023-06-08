@@ -282,56 +282,23 @@ function NavBar() {
             </Space>
             <Space style={{ marginLeft: 'auto' }}>
                 <Space style={{ margin: '0 0.5rem', display: 'flex' }}>
-                    <Space>
-                        {routes
-                            .filter((item) => item?.visible)
-                            .map((route, i) => (
-                                <div
-                                    className={currentRoute === route.path ? 'menu-item selected' : 'menu-item'}
-                                    key={i}
-                                >
-                                    {route.routes && route.routes.length > 0 ? (
-                                        <Dropdown
-                                            className="dropdown-navbar"
-                                            placement="bottom"
-                                            menu={{
-                                                items: handleRoutesChildren(route.routes),
-                                                onClick: (event) => handleMenuClick(event.key, route.routes)
-                                            }}
-                                            trigger={['click']}
-                                        >
-                                            <a onClick={(e) => e.preventDefault()}>
-                                                <Space>
-                                                    {route.label}
-                                                    <DownOutlined />
-                                                </Space>
-                                            </a>
-                                        </Dropdown>
-                                    ) : (
-                                        <Link className="item" onClick={() => handleRouteChange(i)} to={route.path}>
-                                            {route.label}
-                                        </Link>
-                                    )}
-                                </div>
-                            ))}
-                    </Space>
                     <Space style={{ display: 'flex', marginLeft: '2rem' }}>
                         <div style={{ display: 'flex', gap: '1rem' }}>
                             <Button
                                 className="btn-navbar"
                                 shape="round"
                                 icon={<ShopIcon />}
-                                onClick={() => redirectToPage('/shop')}
+                                onClick={() => redirectToPage('/home')}
                             >
-                                Shop
+                                Home
                             </Button>
                             <Button
                                 className="btn-navbar"
                                 shape="round"
                                 icon={<WalletIcon />}
-                                onClick={() => redirectToPage('/wallet')}
+                                onClick={() => redirectToPage('/member')}
                             >
-                                My Wallet
+                                Member
                             </Button>
                             {isHead && (
                                 <Button

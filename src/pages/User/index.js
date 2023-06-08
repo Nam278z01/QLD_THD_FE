@@ -7,6 +7,8 @@ import { routes } from '../../constants/routes';
 import { GetTokenV2ContextProvider } from '../../context/GetTokenV2Context';
 import './index.css';
 import bgMainContent from '../../assets/images/bg_main.svg';
+import HomePage from './HomePage';
+import Member from './Member';
 
 const { Content, Footer } = Layout;
 const footerStyle = {
@@ -29,20 +31,23 @@ const contentErrorStyle = {
 };
 
 const UserIndex = () => {
-    const { isErrorPage } = useSelector((a) => a.LoadingSlice);
+    // const { isErrorPage } = useSelector((a) => a.LoadingSlice);
 
     return (
         <GetTokenV2ContextProvider>
             <Layout style={{ overflow: 'hidden' }}>
-                {!isErrorPage && <NavBar />}
-                <Content style={isErrorPage ? contentErrorStyle : contentStyle}>
+                { <NavBar />}
+                <Content style={ contentStyle}>
                     <Switch>
-                        {routes.map((data, i) => (
+                    <Route exact path={'/'} component={HomePage} />
+                    <Route exact path={'/home'} component={HomePage} />
+                    <Route exact path={'/member'} component={Member} />
+                        {/* {routes.map((data, i) => (
                             <Route key={i} exact path={data.path} component={data.component} />
-                        ))}
+                        ))} */}
                     </Switch>
                 </Content>
-                {!isErrorPage && (
+                { (
                     <Footer style={footerStyle}>
                         <FooterContent />
                     </Footer>
