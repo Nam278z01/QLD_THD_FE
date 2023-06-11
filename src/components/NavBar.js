@@ -309,7 +309,7 @@ function NavBar() {
                             <Button
                                 className="btn-navbar"
                                 shape="round"
-                                onClick={() => redirectToPage('/member')}
+                                onClick={() => redirectToPage('/supject')}
                             >
                                 Quản lý môn học
                             </Button>
@@ -368,19 +368,6 @@ function NavBar() {
                     </Dropdown>
                 </Space>
             </Space>
-            <Modal
-                title="Create Request"
-                centered
-                width={1000}
-                open={modalNewRequest}
-                onCancel={() => {
-                    setModalNewRequest(false);
-                }}
-                destroyOnClose={true}
-                footer={null}
-            >
-                <CreateRequest setModal={setModalNewRequest} />
-            </Modal>
         </Header>
     );
 }

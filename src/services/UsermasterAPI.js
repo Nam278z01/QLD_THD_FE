@@ -12,6 +12,13 @@ export const getUserRole = async (token, DepartmentID, account, trueDepartmentID
         return 'NO DATA';
     }
 };
+export const login = async (user) => {
+    try {
+        return await axios.post(`${Server}/user`, user);
+    } catch (err) {
+        return 'NO DATA';
+    }
+};
 
 export const getAllUserMasterNoDepartment = async (token, DepartmentID, page, row, role) => {
     try {

@@ -1,8 +1,11 @@
-import { Button, Col, Form, Grid, Input, Row, theme, Typography } from 'antd';
+import { Button, Col, Form, Grid, Input, Row, theme, Typography, message } from 'antd';
 import bgLogin from '../assets/images/bg_login.svg';
 import { AkaLogo2Icon } from '../components/Icons';
 import { useTranslation } from 'react-i18next';
 import { useState, useRef } from 'react';
+import { login } from '../services/UsermasterAPI';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUserInfo, setUserRoleAndID } from '../store/UserSlice';
 
 
 const { useBreakpoint } = Grid;
@@ -47,25 +50,56 @@ function Login() {
     const {
         token: { colorPrimary }
     } = theme.useToken();
+    const dispatch = useDispatch();
     const { xs, lg } = useBreakpoint();
     const { t } = useTranslation();
     const [form] = Form.useForm();
-    const userRef = useRef();
-    const errRef = useRef();
-    const [user, setUser] = useState('');
-    const [pwd, setPwd] = useState('');
-    const [errMsg, setErrMsg] = useState('');
-    const [success, setSuccess] = useState(false);
+    const [messageApi, contextHolder] = message.useMessage();
 
     const handleLogin = (value) => {
-        const {password, userName} = value;
-        if (userName === 'admin' && password === '123') {
-            location.replace("/FHN.FLT")
-        }
+        const { password, userName } = value;
+        login({ account: userName, password: password })
+            .then((res) => {
+                if (res !== 'NO DATA') {
+                    const { Account, RoleID } = res?.data?.data;
+                    console.log(Account, RoleID);
+                    dispatch(
+                        setUserInfo({
+                            name: Account,
+                            email: Account,
+                            account: Account
+                        })
+                    );
+                    dispatch(
+                        setUserRoleAndID({
+                            Role: RoleID,
+                            RoleID,
+                            RoleID,
+                            RoleID,
+                            Code: RoleID
+                        })
+                    );
+                    location.replace("/FHN.FLT");
+                } else {
+                    console.log(res);
+                    messageApi.open({
+                        type: 'error',
+                        content: 'Login fail',
+                    });
+                }
+            })
+            .catch(err => {
+                console.log(err);
+                messageApi.open({
+                    type: 'error',
+                    content: 'Login fail ...',
+                });
+            })
     };
 
     return (
         <Row justify='space-between' align='middle' style={bgLoginStyle}>
+            {contextHolder}
             {lg && (
                 <Col lg={16}>
                     <img style={fullHeightStyle} src={bgLogin} />
@@ -81,10 +115,10 @@ function Login() {
                         <Typography.Title level={4} style={sloganStyle}>
                             {t('login.slogan')}
                         </Typography.Title>
-                        <Form.Item style={{width: '65%'}} name={'userName'} label={'Username: '} rules={[{required: true}]}>
+                        <Form.Item style={{ width: '65%' }} name={'userName'} label={'Username: '} rules={[{ required: true }]}>
                             <Input />
                         </Form.Item>
-                        <Form.Item style={{width: '65%'}} name={'password'} label={'Password'} rules={[{required: true}]}>
+                        <Form.Item style={{ width: '65%' }} name={'password'} label={'Password'} rules={[{ required: true }]}>
                             <Input.Password />
                         </Form.Item>
                         <Button htmlType={'submit'} type='primary' style={btnLoginStyle}>

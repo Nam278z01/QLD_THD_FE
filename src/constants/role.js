@@ -1,8 +1,6 @@
 const userRole = {
-    PM: 'PM',
-    HEAD: 'Head',
-    MEMBER: 'Member',
-    DEFAULT_HEAD: 'Default Head'
+    ADMIN: 1,
+    TEACHER: 2
 };
 
 export default userRole;

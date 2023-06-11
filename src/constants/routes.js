@@ -9,7 +9,7 @@ import Shop from '../pages/User/Shop';
 import ErrorPage from '../pages/ErrorPage';
 import ProductDetail from '../pages/User/ProductDetail';
 import Project from '../pages/User/Project';
-import Member from '../pages/User/Member';
+import Class from '../pages/User/Class';
 import Setting from '../pages/User/Setting';
 import SyncData from '../pages/User/SyncData';
 import WorkingTime from '../pages/User/WorkingTime';
@@ -93,7 +93,7 @@ const routes = [
     },
     {
         path: '/member',
-        component: Member,
+        component: Class,
         label: 'Member List'
     },
     {

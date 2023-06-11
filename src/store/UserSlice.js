@@ -25,7 +25,7 @@ export const userSlice = createSlice({
         },
 
         setUserRoleAndID(state, action) {
-            state.role = action.payload.Role !== null ? UserMaster.Role[action.payload.Role - 1] : null;
+            state.role = action.payload.Role ?? null;
 
             state.roleID = action.payload.Role;
             state.userID = action.payload.ID || 0;

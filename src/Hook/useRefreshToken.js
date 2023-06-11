@@ -11,17 +11,17 @@ const useRefreshToken = (api, ...parameter) => {
     const [data, setData] = useState(null);
     const navigate = useHistory();
     const [refresh, setRefresh] = useState();
-    const { DepartmentID } = useSelector((a) => a.DepartmentSettingSlice);
+    // const { DepartmentID } = useSelector((a) => a.DepartmentSettingSlice);
     const dispatch = useDispatch();
     const handleCallApi = (accessTokenResponse, isMounted) => {
         // Acquire token success
-        let accessToken = accessTokenResponse.accessToken;
+        // let accessToken = accessTokenResponse.accessToken;
 
-        let token = {
-            headers: {
-                Authorization: `Bearer ${accessToken}`
-            }
-        };
+        // let token = {
+        //     headers: {
+        //         Authorization: `Bearer ${accessToken}`
+        //     }
+        // };
 
         // Call your API with token
         api(token, DepartmentID, ...parameter)
@@ -37,6 +37,17 @@ const useRefreshToken = (api, ...parameter) => {
     };
 
     useEffect(() => {
+        api(DepartmentID, ...parameter)
+            .then((res) => {
+                if (isMounted) setData(res);
+                setTimeout(() => {
+                    dispatch(setStatusLoading(false));
+                }, 300);
+            })
+            .catch(() => {
+                dispatch(setStatusLoading(false));
+            });
+        /* 
         const controller = new AbortController();
         let isMounted = true;
         dispatch(setStatusLoading(true));
@@ -48,7 +59,6 @@ const useRefreshToken = (api, ...parameter) => {
             instance
                 .acquireTokenSilent(accessTokenRequest)
                 .then((accessTokenResponse) => {
-                    handleCallApi(accessTokenResponse, isMounted);
                 })
                 .catch((error) => {
                     dispatch(setStatusLoading(false));
@@ -68,12 +78,13 @@ const useRefreshToken = (api, ...parameter) => {
                     }
                 });
         }
+        */
         return () => {
-            isMounted = false;
+            // isMounted = false;
             dispatch(setStatusLoading(false));
-            controller.abort();
+            // controller.abort();
         };
-    }, [instance, accounts, inProgress, ...parameter, DepartmentID, refresh]);
+    }, [...parameter, refresh]);
 
     return [data, setRefresh, setData];
 };

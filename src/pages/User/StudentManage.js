@@ -52,20 +52,6 @@ const statusColumRender = (Status) => {
     }
 };
 
-// render badge for member status
-const RoleConvert = (RoleID) => {
-    switch (RoleID) {
-        case MEMBER_ROLE.ADMIN:
-            return <Text>ADMIN</Text>;
-        case MEMBER_ROLE.HEAD:
-            return <Text>HEAD</Text>;
-        case MEMBER_ROLE.PM:
-            return <Text>PM</Text>;
-        case MEMBER_ROLE.MEMBER:
-            return <Text>MEMBER</Text>;
-        default:
-    }
-};
 // default status filter values
 const statusFilterValues = [
     {
@@ -128,71 +114,15 @@ const StyledCard = styled(Card)`
     }
 `;
 
-function TeacherManage() {
+function StudentManage() {
     const [page, setPage] = useState(PAGE_INDEX);
     const [pageSize, setPageSize] = useState(PAGE_SIZE);
     const [search, setSearch] = useState('');
     const [status, setStatus] = useState('');
     const [sortQuery, setSortQuery] = useState('');
-    const [role, setRole] = useState('');
-    const [contract, setContract] = useState('');
-    const [modalModalSeeMore, setModalModalSeeMore] = useState(false);
-    const [modalCreateRule, setModalCreateRule] = useState(false);
-    const [modalImportRule, setModalImportRule] = useState(false);
-    const [modalModalSeeMoreData, setModalModalSeeMoreData] = useState([]);
-    const [data, setData] = useState({});
     const { xs, lg } = useBreakpoint();
-    const { isHead } = useAuth({});
-    const { DepartmentID, Code } = useSelector((state) => state.DepartmentSettingSlice);
-    // const { getTokenFormData, getTokenDownload } = useContext(GetTokenV2Context);
+    const [data, setData] = useState(null);
 
-    const handleDeactiveRule = () => { };
-    const showDeactiveConfirm = () => {
-        confirm({
-            title: 'Are you sure deactive this item?',
-            icon: <ExclamationCircleFilled />,
-            content: null,
-            centered: true,
-            okType: 'danger',
-            className: 'custom-confirm-styles',
-            onOk() {
-                handleDeactiveRule();
-            }
-        });
-    };
-    const onClick = ({ key }) => {
-        switch (parseInt(key)) {
-            case 0:
-                setModalCreateRule(true);
-                break;
-            case 1:
-                showDeactiveConfirm();
-                break;
-            default:
-                break;
-        }
-    };
-    const actionColumRender = (No) => {
-        return (
-            <div>
-                <Dropdown menu={{ items: itemActions, onClick }} trigger={['click']} placement="bottomRight">
-                    <MoreOutlined />
-                </Dropdown>
-            </div>
-        );
-    };
-
-    const statusCheck = (Status) => {
-        if (Status === 1) {
-            return 'ADMIN';
-        } else if (Status === 2) {
-            return 'HEAD';
-        } else if (Status === 3) {
-            return 'PM';
-        } else if (Status === 4) {
-            return 'MEMBER';
-        }
-    };
 
     // setting colums of table
     const columns = [
@@ -209,7 +139,6 @@ function TeacherManage() {
             dataIndex: '',
             key: 'Department',
             align: 'center',
-            render: () => <>{Code}</>
         },
         {
             title: 'Ngày sinh',
@@ -234,10 +163,7 @@ function TeacherManage() {
             title: 'Số điện thoại',
             dataIndex: 'RoleID',
             key: 'Role',
-            align: 'center',
-            filters: roleFilterValues,
-            filterMultiple: false,
-            render: RoleConvert
+            align: 'center'
         },
         {
             title: 'Email',
@@ -318,7 +244,7 @@ function TeacherManage() {
         const formData = new FormData();
         formData.append('file', file);
 
-        // getTokenFormData(uploadMemberExcel, 'Import success', success, null, formData, DepartmentID);
+        getTokenFormData(uploadMemberExcel, 'Import success', success, null, formData, DepartmentID);
     };
 
     const success = () => {
@@ -326,17 +252,17 @@ function TeacherManage() {
     };
     const handleExport = () => {
         const exportFileName = `${Code}_member_${moment(new Date()).format('YYYY_MM_DD_HH_mm')}`;
-        // getTokenDownload(
-        //     exportAllMemberDepartment,
-        //     exportFileName,
-        //     DepartmentID,
-        //     page,
-        //     pageSize,
-        //     sortQuery,
-        //     search,
-        //     role,
-        //     status
-        // );
+        getTokenDownload(
+            exportAllMemberDepartment,
+            exportFileName,
+            DepartmentID,
+            page,
+            pageSize,
+            sortQuery,
+            search,
+            role,
+            status
+        );
     };
 
     return (
@@ -344,9 +270,9 @@ function TeacherManage() {
             <Row>
                 <Col xs={24} md={12} style={{ marginBottom: '1rem' }}>
                     <Title style={{ lineHeight: 1.1, margin: 0 }} level={3}>
-                        Quản lý giáo viên
+                        Quản lý học sinh
                     </Title>
-                    <Text>Danh sách các giáo viên chủ nghiệm</Text>
+                    <Text>Danh sách học sinh</Text>
                 </Col>
                 <Col
                     xs={24}
@@ -408,4 +334,4 @@ function TeacherManage() {
     );
 }
 
-export default TeacherManage;
+export default StudentManage;
