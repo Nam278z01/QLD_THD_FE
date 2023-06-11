@@ -24,7 +24,7 @@ const useRefreshToken = (api, ...parameter) => {
         // };
 
         // Call your API with token
-        api(token, DepartmentID, ...parameter)
+        api(token, ...parameter)
             .then((res) => {
                 if (isMounted) setData(res);
                 setTimeout(() => {
@@ -37,9 +37,9 @@ const useRefreshToken = (api, ...parameter) => {
     };
 
     useEffect(() => {
-        api(DepartmentID, ...parameter)
+        api(...parameter)
             .then((res) => {
-                if (isMounted) setData(res);
+                setData(res);
                 setTimeout(() => {
                     dispatch(setStatusLoading(false));
                 }, 300);

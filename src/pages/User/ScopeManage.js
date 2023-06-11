@@ -1,5 +1,7 @@
-import { Button, Col, Form, Input, Popconfirm, Row, Table, Typography } from 'antd';
+import { Button, Col, Form, Input, InputNumber, Popconfirm, Row, Select, Table, Typography } from 'antd';
 import React, { useContext, useEffect, useRef, useState } from 'react';
+import useRefreshToken from '../../Hook/useRefreshToken';
+import { getAllSubject } from '../../services/SubjectAPI';
 const { Title, Text } = Typography;
 const EditableContext = React.createContext(null);
 const EditableRow = ({ index, ...props }) => {
@@ -62,7 +64,7 @@ const EditableCell = ({
                     },
                 ]}
             >
-                <Input ref={inputRef} onPressEnter={save} onBlur={save} />
+                <InputNumber ref={inputRef} onPressEnter={save} onBlur={save} />
             </Form.Item>
         ) : (
             <div
@@ -79,6 +81,20 @@ const EditableCell = ({
     return <td {...restProps}>{childNode}</td>;
 };
 const ScopeManage = () => {
+    const [subjectData] = useRefreshToken(getAllSubject);
+    const [subjectOption, setSubjectOption] = useState([]);
+
+    useEffect(() => {
+        if (subjectData && subjectData?.subjectService.length > 0) {
+            const options = subjectData?.subjectService.map((s) => {
+                return {
+                    value: s.ID,
+                    label: s.Name
+                }
+            });
+            setSubjectOption(options);
+        }
+    }, [subjectData]);
     const [dataSource, setDataSource] = useState([
         {
             key: '0',
@@ -196,6 +212,7 @@ const ScopeManage = () => {
             }),
         };
     });
+    const handleChangeSubject = () => { };
     return (
         <div>
             <Row>
@@ -204,6 +221,20 @@ const ScopeManage = () => {
                         Quản lý điểm lớp 10A1
                     </Title>
                     <Text>Danh sách học sinh</Text>
+                </Col>
+                <Col xs={24} md={12} style={{ marginBottom: '1rem' }}>
+                    <Select
+                        labelInValue
+                        defaultValue={{
+                            value: 1,
+                            label: 'Toán',
+                        }}
+                        style={{
+                            width: 120,
+                        }}
+                        onChange={handleChangeSubject}
+                        options={subjectOption}
+                    />
                 </Col>
             </Row>
             <Table

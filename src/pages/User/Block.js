@@ -3,6 +3,9 @@ import { SpaceCompactItemContext } from 'antd/es/space/Compact';
 import { useEffect, useState } from 'react';
 import SearchInput from '../../components/SearchInput';
 import { PAGE_INDEX, PAGE_SIZE, PAGE_SIZE_OPTIONS_GRID } from '../../constants/pagination';
+import useRefreshToken from '../../Hook/useRefreshToken';
+import { getAllClass } from '../../services/ClassAPI';
+import { getAllGrade } from '../../services/GradeAPI';
 import Class from './Class';
 const { Title, Text } = Typography;
 const { useBreakpoint } = Grid;
@@ -32,12 +35,18 @@ function Block() {
     const [status, setStatus] = useState('');
     const [sortQuery, setSortQuery] = useState('');
     const { xs, lg } = useBreakpoint();
-    const [data, setData] = useState(BlockData);
+    const [greadeList, setGradeList] = useState([]);
+    const [gradeData] = useRefreshToken(getAllGrade);
+    const [classData, setRefresh] = useRefreshToken(getAllClass);
     const [selectedBlock, setSelectedBlock] = useState(1);
 
     useEffect(() => {
-        setData(BlockData);
-    }, []);
+        if (gradeData?.Grades?.length > 0) {
+            setSelectedBlock(gradeData?.Grades[0].ID);
+            setGradeList(gradeData?.Grades);
+        }
+    }, [gradeData]);
+    
 
     const handelAfterChangeSearch = (value) => {
         setPage(PAGE_INDEX);
@@ -77,12 +86,12 @@ function Block() {
                 </Col>
             </Row>
             <Row gutter={[30, 30]}>
-                {BlockData?.Blocks.length > 0 ? (
-                    BlockData?.Blocks.map((item) => (
+                {greadeList.length > 0 ? (
+                    greadeList.map((item) => (
                         <Col span={8} key={item.ID}>
                             <Card onClick={() => setSelectedBlock(item.ID)} hoverable className={ selectedBlock === item.ID ? 'border border-success':''}>
                                 <Meta title={item.Name} />
-                                hi
+                                {`Mã khối: ${item.Code}`}
                             </Card>
                         </Col>
                     ))
@@ -94,7 +103,7 @@ function Block() {
             </Row>
 
             {/* Class */}
-            <Class />
+            <Class classData={classData} gradeId={selectedBlock} setRefresh={setRefresh}/>
         </div>
     );
 }
